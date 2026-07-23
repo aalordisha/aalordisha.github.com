@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alor Disha - Connect With Us</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Optimized Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- QRCode JS Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
     <style>
         :root {
             --primary-blue: #0f3d59;
@@ -17,7 +20,10 @@
             --youtube-red: #ff0000;
             --facebook-blue: #1877f2;
             --success-green: #28a745;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
         }
 
         * {
@@ -28,8 +34,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -37,198 +43,187 @@
             padding: 20px;
         }
 
+        /* Main Container */
         .container {
-            max-width: 900px;
+            max-width: 850px;
             width: 100%;
-            background: #ffffff;
-            border: 4px solid var(--accent-gold);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            padding: 30px 20px;
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg);
+            border-top: 6px solid var(--accent-gold);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
         }
 
         /* Header Styling */
         header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         header h1 {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 2.8rem); /* Responsive typography */
             color: var(--primary-blue);
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
         }
 
         header p {
-            font-size: 1.2rem;
-            color: #555;
-            font-style: italic;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
+        /* Section Titles */
         .section-title {
             text-align: center;
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--primary-blue);
-            margin: 25px 0 15px;
-            position: relative;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
 
+        .section-title::before,
         .section-title::after {
             content: '';
-            display: block;
-            width: 150px;
-            height: 2px;
+            height: 1px;
+            width: 50px;
             background: var(--accent-gold);
-            margin: 5px auto 0;
+            opacity: 0.5;
         }
 
-        /* Grid Layout for Cards */
+        /* Grid Layout */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            /* Auto-fit makes it highly responsive: 1 col on mobile, multi-col on PC */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
-            justify-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         /* Card Design */
         .card {
-            background: #fff;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 270px;
-            padding: 20px 15px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
+            justify-content: space-between;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            border-color: #ddd;
         }
 
-        .card.youtube {
-            border: 2px solid var(--youtube-red);
-        }
-
-        .card.facebook {
-            border: 2px solid var(--facebook-blue);
-        }
-
-        /* Platform Icon Badge */
+        /* Platform Icons */
         .platform-badge {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
         }
 
-        .card.youtube .platform-badge {
-            color: var(--youtube-red);
+        .card:hover .platform-badge {
+            transform: scale(1.1);
         }
 
-        .card.facebook .platform-badge {
-            color: var(--facebook-blue);
-        }
+        .card.youtube .platform-badge { color: var(--youtube-red); }
+        .card.facebook .platform-badge { color: var(--facebook-blue); }
 
         .card h3 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: #222;
-            margin-bottom: 15px;
-            min-height: 40px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            flex-grow: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        /* QR Code Container */
-        .qr-box {
-            background: #f9f9f9;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .qr-box canvas {
-            display: block;
-        }
-
-        /* Action Button */
+        /* Action Buttons */
         .action-btn {
-            display: inline-block;
+            display: block;
             width: 100%;
-            padding: 8px 0;
-            border-radius: 20px;
+            padding: 12px 0;
+            border-radius: 30px;
             color: #fff;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
+            border: none;
+            outline: none;
         }
 
         .card.youtube .action-btn {
             background-color: var(--youtube-red);
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
         }
 
         .card.facebook .action-btn {
             background-color: var(--facebook-blue);
+            box-shadow: 0 4px 10px rgba(24, 119, 242, 0.2);
         }
 
         .action-btn:hover {
-            opacity: 0.9;
+            filter: brightness(1.1);
+            transform: translateY(-2px);
         }
 
         /* Visited "Done" State */
         .action-btn.done {
             background-color: var(--success-green) !important;
-            opacity: 1 !important;
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2) !important;
+            color: #fff !important;
+            pointer-events: none; /* Prevents re-clicking if desired, remove this line if they should be able to click again */
         }
 
-        /* Footer Info */
+        /* Footer */
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             background: var(--primary-blue);
-            color: #fff;
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 0.9rem;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            gap: 30px;
             flex-wrap: wrap;
+            font-size: 0.95rem;
         }
 
         footer div {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         footer i {
             color: var(--accent-gold);
+            font-size: 1.1rem;
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
             .container {
-                padding: 15px 10px;
+                padding: 30px 20px;
+            }
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
     </style>
@@ -248,15 +243,13 @@
             <div class="card youtube">
                 <div class="platform-badge"><i class="fab fa-youtube"></i></div>
                 <h3>ALOR DISHA YOUTUBE</h3>
-                <div class="qr-box" id="qr-yt-1"></div>
-                <a href="https://youtube.com" target="_blank" class="action-btn" data-id="yt-1">Scan to Subscribe</a>
+                <a href="https://youtube.com/@alordisha" target="_blank" class="action-btn" data-id="yt-1">Subscribe Now</a>
             </div>
             <!-- Card 2 -->
             <div class="card youtube">
                 <div class="platform-badge"><i class="fab fa-youtube"></i></div>
                 <h3>SATYAKI PAHARI YOUTUBE</h3>
-                <div class="qr-box" id="qr-yt-2"></div>
-                <a href="https://youtube.com" target="_blank" class="action-btn" data-id="yt-2">Scan to Subscribe</a>
+                <a href="https://youtube.com/@satyakipahari" target="_blank" class="action-btn" data-id="yt-2">Subscribe Now</a>
             </div>
         </div>
 
@@ -267,54 +260,31 @@
             <div class="card facebook">
                 <div class="platform-badge"><i class="fab fa-facebook"></i></div>
                 <h3>ALOR DISHA PAGE</h3>
-                <div class="qr-box" id="qr-fb-1"></div>
-                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-1">Scan to Follow</a>
+                <a href="https://facebook.com/alordishapage" target="_blank" class="action-btn" data-id="fb-1">Follow Page</a>
             </div>
             <!-- Card 4 -->
             <div class="card facebook">
                 <div class="platform-badge"><i class="fab fa-facebook"></i></div>
                 <h3>ALOR DISHA GROUP</h3>
-                <div class="qr-box" id="qr-fb-2"></div>
-                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-2">Scan to Join</a>
+                <a href="https://facebook.com/groups/alordishagroup" target="_blank" class="action-btn" data-id="fb-2">Join Group</a>
             </div>
             <!-- Card 5 -->
             <div class="card facebook">
                 <div class="platform-badge"><i class="fab fa-facebook"></i></div>
-                <h3>SATYAKI PAHARI (Profile)</h3>
-                <div class="qr-box" id="qr-fb-3"></div>
-                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-3">Scan to Connect</a>
+                <h3>SATYAKI PAHARI</h3>
+                <a href="https://facebook.com/satyakipahari.profile" target="_blank" class="action-btn" data-id="fb-3">Connect Profile</a>
             </div>
         </div>
 
         <!-- Footer Contact Info -->
         <footer>
             <div><i class="fas fa-envelope"></i> satyakimv@gmail.com</div>
-            <div><i class="fas fa-phone-alt"></i> 7407917787</div>
+            <div><i class="fas fa-phone-alt"></i> +91 7407917787</div>
         </footer>
     </div>
 
+    <!-- Tracking Logic Script -->
     <script>
-        // --- QR CODE GENERATION ---
-        const qrItems = [
-            { id: "qr-yt-1", text: "https://youtube.com/@alordisha" },
-            { id: "qr-yt-2", text: "https://youtube.com/@satyakipahari" },
-            { id: "qr-fb-1", text: "https://facebook.com/alordishapage" },
-            { id: "qr-fb-2", text: "https://facebook.com/groups/alordishagroup" },
-            { id: "qr-fb-3", text: "https://facebook.com/satyakipahari.profile" }
-        ];
-
-        qrItems.forEach(item => {
-            new QRCode(document.getElementById(item.id), {
-                text: item.text,
-                width: 120,
-                height: 120,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        });
-
-        // --- BUTTON VISITED TRACKING LOGIC ---
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.action-btn');
 
@@ -328,270 +298,23 @@
                 }
 
                 // 2. Listen for clicks to mark as done
-                button.addEventListener('click', (e) => {
+                button.addEventListener('click', () => {
                     // Save the visited state in local storage
                     localStorage.setItem(storageKey, 'true');
                     
-                    // Update the UI after a brief delay (gives them time to transition to new tab)
+                    // Update the UI after a brief delay so the user can open the link first
                     setTimeout(() => {
                         setButtonDone(button);
                     }, 500);
                 });
             });
 
-            // Helper function to update the button visually
+            // Helper function to visually update the button
             function setButtonDone(btn) {
-                btn.innerHTML = 'Done ✅';
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Done';
                 btn.classList.add('done');
             }
         });
     </script>
-</body>
-</html>
-s-rounded">payments</span> Fees Log
-        </a>
-      </nav>
-
-      <div class="p-4 border-t border-slate-100">
-        <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-4 py-3 text-rose-500 hover:bg-rose-50 rounded-xl font-bold transition-colors">
-          <span class="material-symbols-rounded">logout</span> Logout
-        </button>
-      </div>
-    </aside>
-
-    <!-- MAIN CONTENT AREA -->
-    <main class="flex-1 flex flex-col h-screen w-full relative">
-      
-      <!-- Top Header -->
-      <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-6 sticky top-0 z-30">
-        <div>
-          <h2 class="text-xl font-bold text-slate-800">Overview</h2>
-        </div>
-        <div class="flex items-center gap-4">
-          <button class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-slate-200 transition relative">
-            <span class="material-symbols-rounded">notifications</span>
-            <span class="absolute top-2 right-2.5 w-2 h-2 bg-rose-500 rounded-full"></span>
-          </button>
-          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-secondary text-white flex items-center justify-center font-bold shadow-md">
-            A
-          </div>
-        </div>
-      </header>
-
-      <!-- Scrollable Content -->
-      <div class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8">
-        
-        <!-- Welcome Banner -->
-        <div class="bg-slate-900 rounded-3xl p-6 md:p-8 mb-8 text-white relative overflow-hidden animate-slide-up">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-primary/30 rounded-full blur-[80px]"></div>
-          <h3 class="text-sm font-medium text-slate-300 mb-1">Welcome back,</h3>
-          <h2 id="userNameDisplay" class="text-3xl font-bold mb-4">Admin</h2>
-          <p class="text-slate-400 max-w-md">Your institution is performing well today. Check out the latest updates below.</p>
-        </div>
-
-        <!-- KPI Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 animate-slide-up" style="animation-delay: 0.1s;">
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-indigo-50 text-primary flex items-center justify-center mb-3">
-              <span class="material-symbols-rounded">school</span>
-            </div>
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Total Students</p>
-            <h4 class="text-2xl font-extrabold text-slate-800">500+</h4>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center mb-3">
-              <span class="material-symbols-rounded">badge</span>
-            </div>
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Faculty</p>
-            <h4 class="text-2xl font-extrabold text-slate-800">12</h4>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center mb-3">
-              <span class="material-symbols-rounded">payments</span>
-            </div>
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Fees Status</p>
-            <h4 class="text-2xl font-extrabold text-slate-800">Active</h4>
-          </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center mb-3">
-              <span class="material-symbols-rounded">trending_up</span>
-            </div>
-            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">Attendance</p>
-            <h4 class="text-2xl font-extrabold text-slate-800">92%</h4>
-          </div>
-        </div>
-
-        <!-- Recent Activity Table Area -->
-        <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-6 animate-slide-up" style="animation-delay: 0.2s;">
-          <h3 class="text-lg font-bold text-slate-800 mb-4">Recent Activity</h3>
-          <div class="flex items-center justify-center py-10 border-2 border-dashed border-slate-100 rounded-2xl">
-            <div class="text-center">
-              <span class="material-symbols-rounded text-4xl text-slate-300 mb-2">auto_awesome_mosaic</span>
-              <p class="text-slate-500 font-medium">Data will load here from Google Sheets API</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- MOBILE BOTTOM NAV (Only visible on small screens) -->
-      <nav class="md:hidden fixed bottom-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-200 px-6 py-3 flex justify-between items-center z-50 pb-safe">
-        <button class="flex flex-col items-center gap-1 text-primary">
-          <span class="material-symbols-rounded" style="font-variation-settings: 'FILL' 1;">grid_view</span>
-          <span class="text-[10px] font-bold">Home</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-800 transition-colors">
-          <span class="material-symbols-rounded">groups</span>
-          <span class="text-[10px] font-bold">Students</span>
-        </button>
-        <!-- Floating FAB -->
-        <button class="flex flex-col items-center justify-center -mt-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg shadow-primary/40 active:scale-95 transition-transform">
-          <span class="material-symbols-rounded">qr_code_scanner</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-800 transition-colors">
-          <span class="material-symbols-rounded">payments</span>
-          <span class="text-[10px] font-bold">Fees</span>
-        </button>
-        <button onclick="handleLogout()" class="flex flex-col items-center gap-1 text-slate-400 hover:text-rose-500 transition-colors">
-          <span class="material-symbols-rounded">logout</span>
-          <span class="text-[10px] font-bold">Logout</span>
-        </button>
-      </nav>
-
-    </main>
-  </div>
-
-  <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  
-  <script>
-    // VIEW SWITCHER LOGIC
-    function switchView(viewId) {
-      document.getElementById('landingPage').classList.add('hidden');
-      document.getElementById('loginPage').classList.add('hidden');
-      document.getElementById('dashboardPage').classList.add('hidden');
-      document.getElementById('dashboardPage').classList.remove('md:flex'); // Reset layout class
-      
-      const target = document.getElementById(viewId);
-      target.classList.remove('hidden');
-      if(viewId === 'dashboardPage') target.classList.add('md:flex');
-    }
-
-    // SESSION CHECK ON LOAD
-    document.addEventListener("DOMContentLoaded", function() {
-      const savedUser = localStorage.getItem("alordisha_user");
-      if (savedUser) {
-        const user = JSON.parse(savedUser);
-        document.getElementById("userNameDisplay").innerText = user.name;
-        switchView('dashboardPage');
-      } else {
-        switchView('landingPage');
-      }
-    });
-
-    // MOCK LOGIN LOGIC (For GitHub Pages Testing)
-   // --- REAL API LOGIN LOGIC ---
-    const API_URL = "https://script.google.com/macros/s/AKfycbzfdRCwgbstpDCr2Rjehs5T0eqwTavrpbRHkQLRmIQRg2RmYPXKmIGHMtX7Ytj_KRkl/exec"; // এখানে তোমার Web App URL বসাও
-
-    document.getElementById("loginForm").addEventListener("submit", function(event){
-      event.preventDefault(); 
-
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
-      const btn = document.getElementById("loginBtn");
-      const originalHTML = btn.innerHTML;
-      
-      btn.innerHTML = '<span class="material-symbols-rounded animate-spin">autorenew</span> Authenticating...';
-      btn.disabled = true;
-
-      // Google Apps Script API-তে রিকোয়েস্ট পাঠানো (CORS এড়াতে text/plain ব্যবহার করা হয়েছে)
-      fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8', 
-        },
-        body: JSON.stringify({
-          action: 'login',
-          username: user,
-          password: pass
-        })
-      })
-      .then(response => response.json())
-      .then(data => {
-        btn.innerHTML = originalHTML;
-        btn.disabled = false;
-
-        if(data.success){
-          // লগইন সফল হলে ডেটা সেভ করা
-          localStorage.setItem("alordisha_user", JSON.stringify({ name: data.name, role: data.role }));
-          
-          Swal.fire({
-            icon: 'success',
-            title: 'Welcome Back!',
-            text: 'Successfully logged in as ' + data.name,
-            confirmButtonColor: '#4f46e5',
-            customClass: { popup: 'rounded-3xl', confirmButton: 'rounded-xl px-6 py-2.5 font-bold' },
-            timer: 1500,
-            showConfirmButton: false
-          }).then(() => {
-            document.getElementById("userNameDisplay").innerText = data.name;
-            switchView('dashboardPage');
-          });
-        } else {
-          // লগইন ফেইল হলে
-          Swal.fire({
-            icon: 'error',
-            title: 'Access Denied',
-            text: data.message,
-            confirmButtonColor: '#4f46e5',
-            customClass: { popup: 'rounded-3xl', confirmButton: 'rounded-xl px-6 py-2.5 font-bold' }
-          });
-        }
-      })
-      .catch(error => {
-        btn.innerHTML = originalHTML;
-        btn.disabled = false;
-        Swal.fire({
-          icon: 'error',
-          title: 'Connection Error',
-          text: 'Please check your internet connection and try again.',
-          confirmButtonColor: '#4f46e5',
-          customClass: { popup: 'rounded-3xl', confirmButton: 'rounded-xl px-6 py-2.5 font-bold' }
-        });
-        console.error('Error:', error);
-      });
-    });    // LOGOUT LOGIC
-    function handleLogout() {
-      Swal.fire({
-        title: 'Sign Out?',
-        text: "You will be securely logged out of the portal.",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#e11d48', // Rose 600
-        cancelButtonColor: '#cbd5e1', // Slate 300
-        confirmButtonText: 'Yes, Sign out',
-        cancelButtonText: 'Cancel',
-        reverseButtons: true,
-        customClass: { 
-          popup: 'rounded-3xl', 
-          confirmButton: 'rounded-xl font-bold py-2.5 px-6',
-          cancelButton: 'rounded-xl font-bold py-2.5 px-6 text-slate-700'
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          localStorage.removeItem("alordisha_user");
-          document.getElementById("loginForm").reset();
-          switchView('landingPage');
-          
-          // Small toast confirmation
-          const Toast = Swal.mixin({
-            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000,
-            customClass: { popup: 'rounded-xl shadow-lg' }
-          });
-          Toast.fire({ icon: 'info', title: 'Signed out successfully' });
-        }
-      });
-    }
-  </script>
 </body>
 </html>
