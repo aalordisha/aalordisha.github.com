@@ -1,188 +1,354 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Alor Disha | Management Portal</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts: Poppins for modern clean look -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Material Symbols -->
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Poppins', 'sans-serif'] },
-          colors: {
-            primary: "#4f46e5", // Indigo 600
-            secondary: "#0ea5e9", // Emerald/Teal
-            darkBg: "#0f172a", // Slate 900
-            glass: "rgba(255, 255, 255, 0.7)"
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.5s ease-out',
-            'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-          },
-          keyframes: {
-            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-            slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alor Disha - Connect With Us</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- QRCode JS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary-blue: #0f3d59;
+            --accent-gold: #c5a059;
+            --youtube-red: #ff0000;
+            --facebook-blue: #1877f2;
+            --success-green: #28a745;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-      }
-    }
-  </script>
-  
-  <style>
-    body { background-color: #f8fafc; -webkit-tap-highlight-color: transparent; }
-    
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
 
-    /* Glassmorphism Utilities */
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
-    }
-  </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: #ffffff;
+            border: 4px solid var(--accent-gold);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            margin: 25px 0 15px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 5px auto 0;
+        }
+
+        /* Grid Layout for Cards */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            justify-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Card Design */
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 270px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card.youtube {
+            border: 2px solid var(--youtube-red);
+        }
+
+        .card.facebook {
+            border: 2px solid var(--facebook-blue);
+        }
+
+        /* Platform Icon Badge */
+        .platform-badge {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .card.youtube .platform-badge {
+            color: var(--youtube-red);
+        }
+
+        .card.facebook .platform-badge {
+            color: var(--facebook-blue);
+        }
+
+        .card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 15px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* QR Code Container */
+        .qr-box {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .qr-box canvas {
+            display: block;
+        }
+
+        /* Action Button */
+        .action-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 8px 0;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card.youtube .action-btn {
+            background-color: var(--youtube-red);
+        }
+
+        .card.facebook .action-btn {
+            background-color: var(--facebook-blue);
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Visited "Done" State */
+        .action-btn.done {
+            background-color: var(--success-green) !important;
+            opacity: 1 !important;
+        }
+
+        /* Footer Info */
+        footer {
+            margin-top: 30px;
+            background: var(--primary-blue);
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        footer i {
+            color: var(--accent-gold);
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 15px 10px;
+            }
+        }
+    </style>
 </head>
-<body class="text-slate-800">
+<body>
 
-  <!-- ================= 1. LANDING PAGE ================= -->
-  <div id="landingPage" class="min-h-screen flex flex-col relative overflow-hidden">
-    
-    <!-- Background Elements -->
-    <div class="absolute top-[-20%] left-[-10%] w-96 h-96 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
-    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-secondary/20 rounded-full blur-[100px] -z-10"></div>
+    <div class="container">
+        <header>
+            <h1>ALOR DISHA</h1>
+            <p>Connect with us online</p>
+        </header>
 
-    <!-- Beautiful Navbar -->
-    <nav class="glass-nav fixed w-full top-0 z-50 transition-all">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <!-- Logo -->
-          <div class="flex items-center gap-2 cursor-pointer">
-            <div class="w-10 h-10 bg-gradient-to-tr from-primary to-secondary rounded-xl flex items-center justify-center text-white shadow-lg">
-              <span class="material-symbols-rounded">school</span>
+        <!-- YouTube Channels Section -->
+        <div class="section-title">YouTube Channels</div>
+        <div class="grid-container">
+            <!-- Card 1 -->
+            <div class="card youtube">
+                <div class="platform-badge"><i class="fab fa-youtube"></i></div>
+                <h3>ALOR DISHA YOUTUBE</h3>
+                <div class="qr-box" id="qr-yt-1"></div>
+                <a href="https://youtube.com" target="_blank" class="action-btn" data-id="yt-1">Scan to Subscribe</a>
             </div>
-            <span class="font-bold text-2xl tracking-tight text-slate-900">Alor Disha</span>
-          </div>
-          
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex space-x-8 items-center">
-            <a href="#" class="text-slate-600 hover:text-primary font-medium transition">Home</a>
-            <a href="#" class="text-slate-600 hover:text-primary font-medium transition">Programs</a>
-            <a href="#" class="text-slate-600 hover:text-primary font-medium transition">About Us</a>
-            <button onclick="switchView('loginPage')" class="bg-slate-900 hover:bg-primary text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg hover:shadow-primary/30 flex items-center gap-2 active:scale-95">
-              Portal Login <span class="material-symbols-rounded text-sm">login</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <main class="flex-1 flex items-center justify-center pt-20 px-6 max-w-7xl mx-auto w-full">
-      <div class="text-center max-w-3xl animate-slide-up">
-        <span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary font-semibold text-sm tracking-wide mb-6 inline-block">Smart Education Platform</span>
-        <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
-          Empowering Minds,<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Shaping Futures.</span>
-        </h1>
-        <p class="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed">
-          The all-in-one student management portal for Alor Disha. Streamline admissions, track attendance, and manage fees seamlessly.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="switchView('loginPage')" class="bg-primary hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg shadow-primary/30 active:scale-95 flex items-center justify-center gap-2">
-            Get Started <span class="material-symbols-rounded">arrow_forward</span>
-          </button>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <!-- ================= 2. LOGIN PAGE ================= -->
-  <div id="loginPage" class="hidden min-h-screen items-center justify-center p-4 relative">
-    <button onclick="switchView('landingPage')" class="absolute top-6 left-6 text-slate-500 hover:text-slate-900 flex items-center gap-2 font-medium transition-colors bg-white/50 px-4 py-2 rounded-full glass-card">
-      <span class="material-symbols-rounded">arrow_back</span> Back
-    </button>
-
-    <div class="glass-card rounded-3xl p-8 md:p-10 w-full max-w-md animate-slide-up">
-      <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-          <span class="material-symbols-rounded text-3xl">admin_panel_settings</span>
-        </div>
-        <h2 class="text-2xl font-bold text-slate-900">Admin Login</h2>
-        <p class="text-slate-500 text-sm mt-1">Enter your credentials to access the portal</p>
-      </div>
-
-      <form id="loginForm" class="space-y-5">
-        <div>
-          <label class="block text-sm font-semibold text-slate-700 mb-1">Username</label>
-          <div class="relative">
-            <span class="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">person</span>
-            <input type="text" id="username" required class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-12 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Enter username">
-          </div>
+            <!-- Card 2 -->
+            <div class="card youtube">
+                <div class="platform-badge"><i class="fab fa-youtube"></i></div>
+                <h3>SATYAKI PAHARI YOUTUBE</h3>
+                <div class="qr-box" id="qr-yt-2"></div>
+                <a href="https://youtube.com" target="_blank" class="action-btn" data-id="yt-2">Scan to Subscribe</a>
+            </div>
         </div>
 
-        <div>
-          <label class="block text-sm font-semibold text-slate-700 mb-1">Password</label>
-          <div class="relative">
-            <span class="material-symbols-rounded absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
-            <input type="password" id="password" required class="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-12 pr-4 text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="••••••••">
-          </div>
+        <!-- Facebook Community Section -->
+        <div class="section-title">Facebook Community</div>
+        <div class="grid-container">
+            <!-- Card 3 -->
+            <div class="card facebook">
+                <div class="platform-badge"><i class="fab fa-facebook"></i></div>
+                <h3>ALOR DISHA PAGE</h3>
+                <div class="qr-box" id="qr-fb-1"></div>
+                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-1">Scan to Follow</a>
+            </div>
+            <!-- Card 4 -->
+            <div class="card facebook">
+                <div class="platform-badge"><i class="fab fa-facebook"></i></div>
+                <h3>ALOR DISHA GROUP</h3>
+                <div class="qr-box" id="qr-fb-2"></div>
+                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-2">Scan to Join</a>
+            </div>
+            <!-- Card 5 -->
+            <div class="card facebook">
+                <div class="platform-badge"><i class="fab fa-facebook"></i></div>
+                <h3>SATYAKI PAHARI (Profile)</h3>
+                <div class="qr-box" id="qr-fb-3"></div>
+                <a href="https://facebook.com" target="_blank" class="action-btn" data-id="fb-3">Scan to Connect</a>
+            </div>
         </div>
 
-        <button type="submit" id="loginBtn" class="w-full bg-slate-900 hover:bg-primary text-white font-bold py-3.5 rounded-xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2 mt-4">
-          Sign In <span class="material-symbols-rounded text-sm">arrow_forward</span>
-        </button>
-      </form>
+        <!-- Footer Contact Info -->
+        <footer>
+            <div><i class="fas fa-envelope"></i> satyakimv@gmail.com</div>
+            <div><i class="fas fa-phone-alt"></i> 7407917787</div>
+        </footer>
     </div>
-  </div>
 
-  <!-- ================= 3. DASHBOARD (APP UI) ================= -->
-  <div id="dashboardPage" class="hidden min-h-screen bg-slate-50 md:flex">
-    
-    <!-- DESKTOP SIDEBAR -->
-    <aside class="hidden md:flex w-72 flex-col bg-white border-r border-slate-200 z-40">
-      <div class="h-20 flex items-center px-8 border-b border-slate-100">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
-            <span class="material-symbols-rounded text-sm">school</span>
-          </div>
-          <span class="font-bold text-xl text-slate-900">Alor Disha</span>
-        </div>
-      </div>
-      
-      <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-        <p class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Main Menu</p>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl font-semibold transition-colors">
-          <span class="material-symbols-rounded">grid_view</span> Dashboard
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-          <span class="material-symbols-rounded">person_add</span> Admissions
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-          <span class="material-symbols-rounded">groups</span> Student List
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-          <span class="material-symbols-rounded">fact_check</span> Attendance
-        </a>
-        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
-          <span class="material-symbols-rounded">payments</span> Fees Log
+    <script>
+        // --- QR CODE GENERATION ---
+        const qrItems = [
+            { id: "qr-yt-1", text: "https://youtube.com/@alordisha" },
+            { id: "qr-yt-2", text: "https://youtube.com/@satyakipahari" },
+            { id: "qr-fb-1", text: "https://facebook.com/alordishapage" },
+            { id: "qr-fb-2", text: "https://facebook.com/groups/alordishagroup" },
+            { id: "qr-fb-3", text: "https://facebook.com/satyakipahari.profile" }
+        ];
+
+        qrItems.forEach(item => {
+            new QRCode(document.getElementById(item.id), {
+                text: item.text,
+                width: 120,
+                height: 120,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+
+        // --- BUTTON VISITED TRACKING LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.action-btn');
+
+            buttons.forEach(button => {
+                const buttonId = button.getAttribute('data-id');
+                const storageKey = 'visited_link_' + buttonId;
+
+                // 1. On page load, check if it was previously clicked
+                if (localStorage.getItem(storageKey) === 'true') {
+                    setButtonDone(button);
+                }
+
+                // 2. Listen for clicks to mark as done
+                button.addEventListener('click', (e) => {
+                    // Save the visited state in local storage
+                    localStorage.setItem(storageKey, 'true');
+                    
+                    // Update the UI after a brief delay (gives them time to transition to new tab)
+                    setTimeout(() => {
+                        setButtonDone(button);
+                    }, 500);
+                });
+            });
+
+            // Helper function to update the button visually
+            function setButtonDone(btn) {
+                btn.innerHTML = 'Done ✅';
+                btn.classList.add('done');
+            }
+        });
+    </script>
+</body>
+</html>
+s-rounded">payments</span> Fees Log
         </a>
       </nav>
 
